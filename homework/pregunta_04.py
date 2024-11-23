@@ -26,3 +26,21 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    with open("files/input/data.csv",mode="r") as file:
+        data = file.readlines()
+    
+    dic = {}
+    result = []
+    for line in data:
+        mounth = line.split("	")[2].split("-")[1]
+        if mounth not in dic:
+            dic[mounth] =1
+        else:
+            dic[mounth] +=1
+    for val in dic.items():
+        result.append(val)
+    result.sort()
+    return result
+
+print(pregunta_04())

@@ -5,6 +5,7 @@ solo puede utilizar las funciones y librerias basicas de python. No puede
 utilizar pandas, numpy o scipy.
 """
 
+import os
 
 def pregunta_01():
     """
@@ -14,3 +15,17 @@ def pregunta_01():
     214
 
     """
+
+    # Ruta relativa al archivo data.csv
+
+    # Abrir y leer el archivo CSV
+    with open("files/input/data.csv", mode='r') as file:
+        data = file.readlines()
+
+    suma = 0
+    for line in data:
+        line = line.strip().split("	")
+        suma += int(line[1])
+
+    
+    return suma

@@ -15,3 +15,19 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+    with open("files/input/data.csv","r") as file:
+        data = file.readlines()
+    
+    result = []
+    dic = {}
+    for line in data:
+        l= line.split("	")[0]
+        v= int(line.split("	")[1])
+        if l not in dic:
+            dic[l] = v
+        else:
+            dic[l] += v
+    for val in dic.items():
+        result.append(val)
+    result.sort()
+    return result

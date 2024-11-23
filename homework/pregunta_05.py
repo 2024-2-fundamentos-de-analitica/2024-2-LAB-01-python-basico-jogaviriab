@@ -15,3 +15,25 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    with open("files/input/data.csv",mode="r") as file:
+        data = file.readlines()
+    
+    dic = {}
+    result = []
+    for line in data:
+        l = line.split("	")[0]
+        v = int(line.split("	")[1])
+        if l not in dic:
+            dic[l] = [v,v]
+        else:
+            if v > dic[l][0]:
+                dic[l] = [v,dic[l][1]]
+            elif v < dic[l][1]:
+                dic[l] = [dic[l][0],v]
+    for val in dic.items():
+        r = (val[0],val[1][0],val[1][1])
+        result.append(r)
+    result.sort()
+    return result
+
+print(pregunta_05())
