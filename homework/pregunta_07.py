@@ -25,3 +25,23 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+
+    with open('files/input/data.csv','r') as file:
+        data = file.readlines()
+    
+    dic = [[] for _ in range(10)]
+
+
+    for line in data:
+        columns = line.split("\t")
+        letter = columns[0]
+        number = int(columns[1])
+        n= len(dic[number])
+        dic[number].append(letter)
+
+    
+    result = [(i, dic[i]) for i in range(10)]
+    return result
+
+
+pregunta_07()

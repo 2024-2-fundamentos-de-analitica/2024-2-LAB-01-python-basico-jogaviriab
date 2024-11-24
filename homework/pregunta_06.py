@@ -1,4 +1,4 @@
-                                                                                                                            """
+"""
 Escriba el codigo que ejecute la accion solicitada en cada pregunta. Los
 datos requeridos se encuentran en el archivo data.csv. En este laboratorio
 solo puede utilizar las funciones y librerias basicas de python. No puede
@@ -26,3 +26,25 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = file.readlines()
+    print(max(3,3))
+    dic = {}
+    result = []
+    for line in data:
+        info = line.split("	")[4]
+        info = info.replace("\n","").split(",")
+        for i in info:
+            clave,valor = i.split(":")
+            valor = int(valor)
+            if clave in dic:
+                dic[clave][0]=min(dic[clave][0],valor)
+                dic[clave][1]=max(dic[clave][1],valor)
+            else:
+                dic[clave] = [valor,valor]   
+    
+    [result.append((item[0],int(item[1][0]),int(item[1][1]))) for item in dic.items()]
+    result.sort()
+    return result
+
+print(pregunta_06())

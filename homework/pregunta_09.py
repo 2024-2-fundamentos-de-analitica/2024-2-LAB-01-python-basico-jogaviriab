@@ -24,3 +24,15 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    with open('files/input/data.csv', 'r') as file:
+        data = file.readlines()
+    result = {}
+    for line in data:
+        info = line.split("	")[4]
+        info = info.replace("\n","").split(",")
+        for i in info:
+            clave,_ = i.split(":")
+            result[clave] = result[clave] + 1 if clave in result else 1
+
+    
+    return result
